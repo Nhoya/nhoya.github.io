@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Writeup on 0x7a</title>
-    <link>https://nhoya.github.io/tags/writeup/</link>
-    <description>Recent content in Writeup on 0x7a</description>
+    <title>Code Review on 0x7a</title>
+    <link>https://nhoya.github.io/tags/code-review/</link>
+    <description>Recent content in Code Review on 0x7a</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>All rights reserved - 2018</copyright>
     <lastBuildDate>Sun, 10 Jun 2018 20:59:09 +0200</lastBuildDate>
     
-	<atom:link href="https://nhoya.github.io/tags/writeup/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://nhoya.github.io/tags/code-review/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,16 +19,6 @@
       
       <guid>https://nhoya.github.io/post/mycroftai-rce/</guid>
       <description>&amp;ldquo;Hey Mycroft, we&amp;rsquo;ve got a Problem&amp;rdquo; Introduction During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting project called Mycroft AI. It&amp;rsquo;s an AI-powered vocal assistant started with a crowdfunding campaign in 2015 and a more recent one that allowed Mycroft to produce their Mark-I and Mark-II devices. It&amp;rsquo;s also running on Linux Desktop/Server, Raspberry PI and will be available soon™ on Jaguar F-Type and Land Rover</description>
-    </item>
-    
-    <item>
-      <title>XSS via unsanitized markdown output in pastebin.com and reddit.com</title>
-      <link>https://nhoya.github.io/post/pastebin-reddit-xss/</link>
-      <pubDate>Tue, 24 Apr 2018 20:15:58 +0200</pubDate>
-      
-      <guid>https://nhoya.github.io/post/pastebin-reddit-xss/</guid>
-      <description>We all love Markdown, right? It&amp;rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators.
-Some time ago playing the Hack.lu 2017 CTF event with my team we solved an interesting challenge called Mitsune were a misconfigured instance of mitsune was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies.</description>
     </item>
     
   </channel>

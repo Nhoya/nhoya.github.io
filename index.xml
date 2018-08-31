@@ -23,6 +23,15 @@ Here you can find my Writeup, Rants, Projects and Disclosures. (Mostly Rants :P)
     </item>
     
     <item>
+      <title>Getting &#34;Zero Click&#34; Remote Code Execution in Mycroft AI vocal assistant</title>
+      <link>https://nhoya.github.io/post/mycroftai-rce/</link>
+      <pubDate>Sun, 10 Jun 2018 20:59:09 +0200</pubDate>
+      
+      <guid>https://nhoya.github.io/post/mycroftai-rce/</guid>
+      <description>&amp;ldquo;Hey Mycroft, we&amp;rsquo;ve got a Problem&amp;rdquo; Introduction During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting project called Mycroft AI. It&amp;rsquo;s an AI-powered vocal assistant started with a crowdfunding campaign in 2015 and a more recent one that allowed Mycroft to produce their Mark-I and Mark-II devices. It&amp;rsquo;s also running on Linux Desktop/Server, Raspberry PI and will be available soon™ on Jaguar F-Type and Land Rover</description>
+    </item>
+    
+    <item>
       <title>XSS via unsanitized markdown output in pastebin.com and reddit.com</title>
       <link>https://nhoya.github.io/post/pastebin-reddit-xss/</link>
       <pubDate>Tue, 24 Apr 2018 20:15:58 +0200</pubDate>

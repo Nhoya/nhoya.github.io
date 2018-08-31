@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>https://nhoya.github.io/post/mycroftai-rce/</loc>
+    <lastmod>2018-06-10T20:59:09+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://nhoya.github.io/post/pastebin-reddit-xss/</loc>
     <lastmod>2018-04-24T20:15:58+02:00</lastmod>
   </url>
@@ -24,7 +29,19 @@
   </url>
   
   <url>
+    <loc>https://nhoya.github.io/tags/ai/</loc>
+    <lastmod>2018-06-10T20:59:09+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://nhoya.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhoya.github.io/tags/code-review/</loc>
+    <lastmod>2018-06-10T20:59:09+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -36,12 +53,13 @@
   
   <url>
     <loc>https://nhoya.github.io/post/</loc>
-    <lastmod>2018-04-24T20:15:58+02:00</lastmod>
+    <lastmod>2018-06-10T20:59:09+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://nhoya.github.io/tags/</loc>
+    <lastmod>2018-06-10T20:59:09+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -53,7 +71,7 @@
   
   <url>
     <loc>https://nhoya.github.io/tags/writeup/</loc>
-    <lastmod>2018-04-24T20:15:58+02:00</lastmod>
+    <lastmod>2018-06-10T20:59:09+02:00</lastmod>
     <priority>0</priority>
   </url>
   

