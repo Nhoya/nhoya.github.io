@@ -5,15 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Hello World</title>
-  <meta property="og:title" content="Hello World" />
-  <meta name="twitter:title" content="Hello World" />
-  <meta name="description" content="Hello World!
-package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
-  <meta property="og:description" content="Hello World!
-package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
-  <meta name="twitter:description" content="Hello World!
-package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
+  <title>XSS via unsanitized markdown output in pastebin.com and reddit.com</title>
+  <meta property="og:title" content="XSS via unsanitized markdown output in pastebin.com and reddit.com" />
+  <meta name="twitter:title" content="XSS via unsanitized markdown output in pastebin.com and reddit.com" />
+  <meta name="description" content="We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators. Some time ago playing the Hack.lu 2017 CTF event with my team we solved an interesting challenge called Mitsune were a misconfigured instance of mitsune was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies.">
+  <meta property="og:description" content="We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators. Some time ago playing the Hack.lu 2017 CTF event with my team we solved an interesting challenge called Mitsune were a misconfigured instance of mitsune was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies.">
+  <meta name="twitter:description" content="We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators. Some time ago …">
   <meta name="author" content="Francesco Giordano"/>
   <link href='https://nhoya.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://nhoya.github.io/img/cat.jpg" />
@@ -21,12 +18,12 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@0x7a657461" />
   <meta name="twitter:creator" content="@0x7a657461" />
-  <meta property="og:url" content="https://nhoya.github.io/post/hello-world/" />
+  <meta property="og:url" content="https://nhoya.github.io/post/pastebin-reddit-xss/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="0x7a" />
 
   <meta name="generator" content="Hugo 0.46" />
-  <link rel="canonical" href="https://nhoya.github.io/post/hello-world/" />
+  <link rel="canonical" href="https://nhoya.github.io/post/pastebin-reddit-xss/" />
   <link rel="alternate" href="https://nhoya.github.io/index.xml" type="application/rss+xml" title="0x7a">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -178,13 +175,13 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
-              <h1>Hello World</h1>
+              <h1>XSS via unsanitized markdown output in pastebin.com and reddit.com</h1>
                 
                 
                   <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on January 1, 1337
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 24, 2018
   
   
   
@@ -205,13 +202,80 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>Hello World!</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-<span class="kn">import</span> <span class="nx">fmt</span>
+        
 
-<span class="kd">func</span> <span class="nx">main</span><span class="p">(){</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
+<p>We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators.
+Some time ago playing the <a href="https://2017.hack.lu/ctf/">Hack.lu 2017 CTF</a> event with <a href="https://jbzteam.github.io">my team</a> we solved an interesting challenge called Mitsune were a misconfigured instance of <a href="https://github.com/lepture/mistune">mitsune</a> was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies. You can find two writeup with different approaches <a href="https://www.pwndiary.com/write-ups/hack-lu-ctf-2017-mistune-write-up-web150/">here</a> and <a href="https://rawsec.ml/en/Hacklu-2017-write-up/#150-mistune-web">here</a>.</p>
+
+<p>After the end of the CTF, my teammate Donato Onofri and I started to investigate more on how this vulnerability affects worldwide markdown services and we ended up with multiple reports (<a href="https://github.com/leanote/leanote/issues/676">here</a>, <a href="https://github.com/adtac/commento/issues/154">here</a> and <a href="https://github.com/leanote/leanote/issues/719">here</a>) But as you can see all of those are relatively small services.</p>
+
+<h2 id="the-pastebin-case">The pastebin case</h2>
+
+<p>During my investigation I found that even pastebin was affected by this kind of vulnerability.</p>
+
+<p>When we create a new paste we can select which language to use for the syntax highlight. In this list there is also a <strong>Premium only</strong> pick for Markdown parsing, let&rsquo;s try it.</p>
+
+<p><img src="https://raw.githubusercontent.com/Nhoya/PastebinMarkdownXSS/master/screen/syntax_highlight.png" alt="highlight" /></p>
+
+<p>First I tried to send a simple HTML body to see if it&rsquo;s interpreted but without success.</p>
+
+<p>I also tried a simple payload using <code>[link](&lt;script&gt;alert(1)&lt;/script&gt;)</code> but apparently the script tag is not interpreted neither. Lastly I tried the old trick we used to solve the Mitsune challenge: we used a <code>base64</code> payload and the content-type base64 to let the javascript handle the decoding and the execution. I crafted a new markdown link entity, containing the following payload:</p>
+
+<p><code>[clickme](data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pgo=)</code></p>
+
+<p>and I generated a new paste. Clicking on the link I finally got an alert, confirming that my payload was working.</p>
+
+<p><img src="https://raw.githubusercontent.com/Nhoya/PastebinMarkdownXSS/master/screen/PoC1_2.png" alt="PoC1_2" />
+<img src="https://raw.githubusercontent.com/Nhoya/PastebinMarkdownXSS/master/screen/PoC1.png" alt="PoC" /></p>
+
+<p>The cool part is that you need a premium account to generate the paste but you can send it with anyone :)</p>
+
+<h2 id="the-second-poc">The second PoC</h2>
+
+<p>Some time after I found and reported the vulnerability I finally received an email from the pastebin administrators claiming that they patched it.</p>
+
+<p>I gave it a look and found that they blocked the <code>data</code> entity and my old PoC was no longer working.</p>
+
+<p>To confirm that the problem was solved I created another paste with a simpler payload</p>
+
+<p><code>[totallyharmlesslink](javascript:window.onerror=alert;throw%201)</code></p>
+
+<p>and, again, I got an alert :D</p>
+
+<p><img src="https://raw.githubusercontent.com/Nhoya/PastebinMarkdownXSS/master/screen/PoC2.jpg" alt="Second PoC" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Markdown XSS are real and tons of services are affected due to unsanitized output. If you maintain a project that is using a markdown parser I suggest you to read <a href="https://github.com/showdownjs/showdown/wiki/Markdown%27s-XSS-Vulnerability-(and-how-to-mitigate-it)">this</a>, if you are a pentester or a bug hunter I suggest you to starting consider this kind of vulnerability (<a href="https://www.cvedetails.com/cve/CVE-2017-1000459/">I even got a CVE :P</a>)</p>
+
+<p>Fun fact: during an event, I was talking about CTFs and someone told me: &ldquo;I don&rsquo;t play CTFs because they are not real world scenarios&rdquo; :)</p>
+
+<p>Note: As pointed out <a href="https://github.com/Nhoya/PastebinMarkdownXSS/blob/master/issues/3">here</a> the first payload,on recent browsers, will lose the context of the webpage where it was triggered.</p>
+
+<h2 id="bonus">BONUS</h2>
+
+<p>Publishing this writeup on reddit.com we found out that the new interface was affected by this vulnerability :)</p>
+
+<h2 id="timeline">Timeline</h2>
+
+<ul>
+<li>22/12/17 Vulnerability found</li>
+<li>23/12/17 Vulnerability reported</li>
+<li>24/12/17 First contact with the administrators, they were kind enough to provide me with a premium lifetime account and the promise to patch ASAP</li>
+<li>02/04/18 I sent a mail to the administrators to solicit the patch and ask information about the disclosure details</li>
+<li>10/04/18 I received a mail saying that the vulnerability was patched</li>
+<li>10/04/18 I sent a reply containing a new PoC with a bypass for the current patch</li>
+<li>11/04/18 Patch for the second PoC released</li>
+<li>13/04/18 Vulnerability found on reddit.com</li>
+<li>13/04/18 Vulnerability reported to reddit team</li>
+<li>13/04/18 First hotfix released</li>
+<li>23/04/18 Final path deployed</li>
+</ul>
+
+<h2 id="interested-in-my-works">Interested in my works?</h2>
+
+<p>Follow me on twitter <code>@0x7a657461</code> and linkedin <code>0xzeta</code></p>
+
 
         
 
@@ -223,7 +287,7 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fnhoya.github.io%2fpost%2fhello-world%2f&amp;text=Hello%20World&amp;via=0x7a657461"
+    <a href="//twitter.com/share?url=https%3a%2f%2fnhoya.github.io%2fpost%2fpastebin-reddit-xss%2f&amp;text=XSS%20via%20unsanitized%20markdown%20output%20in%20pastebin.com%20and%20reddit.com&amp;via=0x7a657461"
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -234,7 +298,7 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fnhoya.github.io%2fpost%2fhello-world%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fnhoya.github.io%2fpost%2fpastebin-reddit-xss%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -244,7 +308,7 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fnhoya.github.io%2fpost%2fhello-world%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fnhoya.github.io%2fpost%2fpastebin-reddit-xss%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -254,7 +318,7 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fnhoya.github.io%2fpost%2fhello-world%2f&amp;title=Hello%20World" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fnhoya.github.io%2fpost%2fpastebin-reddit-xss%2f&amp;title=XSS%20via%20unsanitized%20markdown%20output%20in%20pastebin.com%20and%20reddit.com" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -264,7 +328,7 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fnhoya.github.io%2fpost%2fhello-world%2f&amp;title=Hello%20World" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fnhoya.github.io%2fpost%2fpastebin-reddit-xss%2f&amp;title=XSS%20via%20unsanitized%20markdown%20output%20in%20pastebin.com%20and%20reddit.com" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -275,7 +339,7 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fnhoya.github.io%2fpost%2fhello-world%2f&amp;title=Hello%20World" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fnhoya.github.io%2fpost%2fpastebin-reddit-xss%2f&amp;title=XSS%20via%20unsanitized%20markdown%20output%20in%20pastebin.com%20and%20reddit.com" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -286,7 +350,7 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fnhoya.github.io%2fpost%2fhello-world%2f&amp;description=Hello%20World" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fnhoya.github.io%2fpost%2fpastebin-reddit-xss%2f&amp;description=XSS%20via%20unsanitized%20markdown%20output%20in%20pastebin.com%20and%20reddit.com" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -303,10 +367,10 @@ package main import fmt func main(){ fmt.Println(&#34;Hello World!&#34;) }">
       
         <ul class="pager blog-pager">
           
-          
-            <li class="next">
-              <a href="https://nhoya.github.io/post/pastebin-reddit-xss/" data-toggle="tooltip" data-placement="top" title="XSS via unsanitized markdown output in pastebin.com and reddit.com">Next Post &rarr;</a>
+            <li class="previous">
+              <a href="https://nhoya.github.io/post/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello World">&larr; Previous Post</a>
             </li>
+          
           
         </ul>
       
