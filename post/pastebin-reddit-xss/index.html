@@ -8,9 +8,12 @@
   <title>XSS via unsanitized markdown output in pastebin.com and reddit.com</title>
   <meta property="og:title" content="XSS via unsanitized markdown output in pastebin.com and reddit.com" />
   <meta name="twitter:title" content="XSS via unsanitized markdown output in pastebin.com and reddit.com" />
-  <meta name="description" content="We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators. Some time ago playing the Hack.lu 2017 CTF event with my team we solved an interesting challenge called Mitsune were a misconfigured instance of mitsune was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies.">
-  <meta property="og:description" content="We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators. Some time ago playing the Hack.lu 2017 CTF event with my team we solved an interesting challenge called Mitsune were a misconfigured instance of mitsune was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies.">
-  <meta name="twitter:description" content="We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators. Some time ago …">
+  <meta name="description" content="We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators.
+Some time ago playing the Hack.lu 2017 CTF event with my team we solved an interesting challenge called Mitsune were a misconfigured instance of mitsune was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies.">
+  <meta property="og:description" content="We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators.
+Some time ago playing the Hack.lu 2017 CTF event with my team we solved an interesting challenge called Mitsune were a misconfigured instance of mitsune was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies.">
+  <meta name="twitter:description" content="We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators.
+Some time ago …">
   <meta name="author" content="Francesco Giordano"/>
   <link href='https://nhoya.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://nhoya.github.io/img/cat.jpg" />
@@ -204,8 +207,9 @@
       <article role="main" class="blog-post">
         
 
-<p>We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators.
-Some time ago playing the <a href="https://2017.hack.lu/ctf/">Hack.lu 2017 CTF</a> event with <a href="https://jbzteam.github.io">my team</a> we solved an interesting challenge called Mitsune were a misconfigured instance of <a href="https://github.com/lepture/mistune">mitsune</a> was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies. You can find two writeup with different approaches <a href="https://www.pwndiary.com/write-ups/hack-lu-ctf-2017-mistune-write-up-web150/">here</a> and <a href="https://rawsec.ml/en/Hacklu-2017-write-up/#150-mistune-web">here</a>.</p>
+<p>We all love Markdown, right? It&rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators.</p>
+
+<p>Some time ago playing the <a href="https://2017.hack.lu/ctf/">Hack.lu 2017 CTF</a> event with <a href="https://jbzteam.github.io">my team</a> we solved an interesting challenge called Mitsune were a misconfigured instance of <a href="https://github.com/lepture/mistune">mitsune</a> was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies. You can find two writeup with different approaches <a href="https://www.pwndiary.com/write-ups/hack-lu-ctf-2017-mistune-write-up-web150/">here</a> and <a href="https://rawsec.ml/en/Hacklu-2017-write-up/#150-mistune-web">here</a>.</p>
 
 <p>After the end of the CTF, my teammate Donato Onofri and I started to investigate more on how this vulnerability affects worldwide markdown services and we ended up with multiple reports (<a href="https://github.com/leanote/leanote/issues/676">here</a>, <a href="https://github.com/adtac/commento/issues/154">here</a> and <a href="https://github.com/leanote/leanote/issues/719">here</a>) But as you can see all of those are relatively small services.</p>
 

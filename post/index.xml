@@ -18,7 +18,8 @@
       <pubDate>Tue, 24 Apr 2018 20:15:58 +0200</pubDate>
       
       <guid>https://nhoya.github.io/post/pastebin-reddit-xss/</guid>
-      <description>We all love Markdown, right? It&amp;rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators. Some time ago playing the Hack.lu 2017 CTF event with my team we solved an interesting challenge called Mitsune were a misconfigured instance of mitsune was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies.</description>
+      <description>We all love Markdown, right? It&amp;rsquo;s a fast and user-friendly way to beautify our documentation. Well, all that glitters is not gold, in this case not for system administrators.
+Some time ago playing the Hack.lu 2017 CTF event with my team we solved an interesting challenge called Mitsune were a misconfigured instance of mitsune was given and we had to send a malicious link containing an XSS payload to an administrator to steal their cookies.</description>
     </item>
     
     <item>
