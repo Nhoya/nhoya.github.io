@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>0x7a</title>
+    <link>/</link>
+    <description>Recent content on 0x7a</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved - 2018</copyright>
+    <lastBuildDate>Tue, 21 Aug 2018 16:08:57 +0200</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello World</title>
+      <link>/post/hello-world/</link>
+      <pubDate>Tue, 21 Aug 2018 16:08:57 +0200</pubDate>
+      
+      <guid>/post/hello-world/</guid>
+      <description>Hello World!
+package main import fmt func main(){ fmt.Println(&amp;#34;Hello World!&amp;#34;) }</description>
+    </item>
+    
+  </channel>
+</rss>
