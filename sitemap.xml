@@ -45,4 +45,16 @@
     <priority>0</priority>
   </url>
   
+  <url>
+    <loc>https://nhoya.github.io/tags/web-exploitation/</loc>
+    <lastmod>2018-04-24T20:15:58+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhoya.github.io/tags/writeup/</loc>
+    <lastmod>2018-04-24T20:15:58+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
 </urlset>
