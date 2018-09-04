@@ -187,17 +187,17 @@
   <div role="main" class="container main-content">
     <script>
     window.addEventListener('load', function() {
-        var status = document.getElementById("status");
+        
 
         function updateOnlineStatus(event) {
             var condition = navigator.onLine ? "online" : "offline";
 
-            status.className = condition;
-            status.innerHTML = condition.toUpperCase();
             
-            console.log("beforeend", "Event: " + event.type + "; Status: " + condition);
+            
+            
+            
             if (event.type == 'offline') {
-                console.log("status offline")
+                console.log("This is our little secret :)")
             }
         }
 
@@ -206,7 +206,7 @@
     });</script>
 
     <div id="status"></div>
-    <p>This is a test</p>
+    <p>Something Magic is going on here :)</p>
     
     <div class="text-center">
       <h1>Whoops, this page doesn&#39;t exist. Move along. (404 error)</h1>
