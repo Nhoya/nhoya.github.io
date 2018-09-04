@@ -8,9 +8,25 @@
   <title>Getting &#34;Zero Click&#34; Remote Code Execution in Mycroft AI vocal assistant</title>
   <meta property="og:title" content="Getting &#34;Zero Click&#34; Remote Code Execution in Mycroft AI vocal assistant" />
   <meta name="twitter:title" content="Getting &#34;Zero Click&#34; Remote Code Execution in Mycroft AI vocal …" />
-  <meta name="description" content="&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo; Introduction During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting project called Mycroft AI. It&rsquo;s an AI-powered vocal assistant started with a crowdfunding campaign in 2015 and a more recent one that allowed Mycroft to produce their Mark-I and Mark-II devices. It&rsquo;s also running on Linux Desktop/Server, Raspberry PI and will be available soon™ on Jaguar F-Type and Land Rover">
-  <meta property="og:description" content="&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo; Introduction During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting project called Mycroft AI. It&rsquo;s an AI-powered vocal assistant started with a crowdfunding campaign in 2015 and a more recent one that allowed Mycroft to produce their Mark-I and Mark-II devices. It&rsquo;s also running on Linux Desktop/Server, Raspberry PI and will be available soon™ on Jaguar F-Type and Land Rover">
-  <meta name="twitter:description" content="&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo; Introduction During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting …">
+  <meta name="description" content="&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo;
+
+
+
+During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting project called Mycroft AI. It&rsquo;s an AI-powered vocal assistant started with a crowdfunding campaign in 2015 and a more recent one that allowed Mycroft to produce their Mark-I and Mark-II devices. It&rsquo;s also running on Linux Desktop/Server, Raspberry PI and will be available soon™ on Jaguar F-Type and Land Rover
+
+">
+  <meta property="og:description" content="&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo;
+
+
+
+During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting project called Mycroft AI. It&rsquo;s an AI-powered vocal assistant started with a crowdfunding campaign in 2015 and a more recent one that allowed Mycroft to produce their Mark-I and Mark-II devices. It&rsquo;s also running on Linux Desktop/Server, Raspberry PI and will be available soon™ on Jaguar F-Type and Land Rover
+
+">
+  <meta name="twitter:description" content="&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo;
+
+
+
+During my journey contributing to open source I was working with my friend Matteo De Carlo on an AUR Package of a really interesting project …">
   <meta name="author" content="Francesco Giordano"/>
   <link href='https://nhoya.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://nhoya.github.io/img/cat.png" />
@@ -22,7 +38,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="0x7a" />
 
-  <meta name="generator" content="Hugo 0.46" />
+  <meta name="generator" content="Hugo 0.48" />
   <link rel="canonical" href="https://nhoya.github.io/post/mycroftai-rce/" />
   <link rel="alternate" href="https://nhoya.github.io/index.xml" type="application/rss+xml" title="0x7a">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -228,15 +244,13 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<h1 id="hey-mycroft-we-ve-got-a-problem">&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo;</h1>
+        <h1 id="hey-mycroft-we-ve-got-a-problem">&ldquo;Hey Mycroft, we&rsquo;ve got a Problem&rdquo;</h1>
 
 <p><img src="https://dmtyylqvwgyxw.cloudfront.net/instances/132/uploads/images/custom_image/image/466/normal_9b94a225-8605-4d78-82d2-4c59f6981c57.jpg" alt="Mycroft AI" /></p>
 
-<h2 id="introduction">Introduction</h2>
-
 <p>During my journey contributing to open source I was working with my friend <a href="https://github.com/portaloffreedom">Matteo De Carlo</a> on an <a href="https://git.covolunablu.org/portaloffreedom/plasma-mycroft-PKGBUILD">AUR Package</a> of a really interesting project called <a href="https://mycroft.ai">Mycroft AI</a>. It&rsquo;s an AI-powered vocal assistant started with a <a href="https://www.kickstarter.com/projects/aiforeveryone/mycroft-an-open-source-artificial-intelligence-for">crowdfunding campaign</a> in 2015 and a <a href="https://www.indiegogo.com/projects/mycroft-mark-ii-the-open-voice-assistant#/">more recent one</a> that allowed Mycroft to produce their Mark-I and Mark-II devices. It&rsquo;s also running on Linux Desktop/Server, Raspberry PI and will be available soon™ on <a href="https://www.youtube.com/watch?v=6GHmzbXp_jY">Jaguar F-Type</a> and <a href="https://mycroft.ai/blog/mycroft-welcomes-jaguar-land-rover-new-investor/">Land Rover</a></p>
+
+<p></p>
 
 <h2 id="digging-in-the-source-code">Digging in the source code</h2>
 
@@ -355,7 +369,6 @@
 <li>06/06/2018 The CTO said that they have no problem with the release of the vulnerability and will add a warning to remember the user to use a firewall <code>¯\_(ツ)_/¯</code></li>
 <li>09/06/2018 Public disclosure</li>
 </ul>
-
 
         
           <div class="blog-tags">
