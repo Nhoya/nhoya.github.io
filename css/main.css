@@ -366,7 +366,7 @@ footer .theme-by {
 }
 .post-preview {
   margin: 0;
-  font-weight: 300;
+  font-weight: 500;
   margin-bottom: 10px;
 }
 
@@ -374,7 +374,7 @@ footer .theme-by {
     margin: 0;
     font-weight: 300;
     margin-bottom: 10px;
-    font-size 18px;
+    font-size: 11px;
     font-style: italic;
 }
 
