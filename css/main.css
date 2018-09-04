@@ -374,7 +374,8 @@ footer .theme-by {
     margin: 0;
     font-weight: 300;
     margin-bottom: 10px;
-    font-size 8px;
+    font-size 3px;
+    font-style: italic;
 }
 
 .post-preview .post-meta,
