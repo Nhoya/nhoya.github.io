@@ -138,7 +138,7 @@ img {
 .navbar-custom {
   background: #F5F5F5;
   border-bottom: 1px solid #EAEAEA;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Fira Mono', monospace;
 }
 
 .navbar-custom .nav li a {
@@ -311,7 +311,7 @@ footer .list-inline {
   padding: 0;
 }
 footer .copyright {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Fira Mono', monospace;
   text-align: center;
   margin-bottom: 0;
 }
@@ -382,7 +382,7 @@ footer .theme-by {
   text-decoration: none;
 }
 .post-preview .post-entry {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Fira Mono', monospace;
 }
 .post-entry-container {
   display: inline-block;
