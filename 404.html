@@ -183,6 +183,27 @@
 
     
     
+    window.addEventListener('load', function() {
+        var status = document.getElementById("status");
+        var log = document.getElementById("log");
+
+        function updateOnlineStatus(event) {
+            var condition = navigator.onLine ? "online" : "offline";
+
+            status.className = condition;
+            status.innerHTML = condition.toUpperCase();
+
+            log.insertAdjacentHTML("beforeend", "Event: " + event.type + "; Status: " + condition);
+        }
+
+        window.addEventListener('online',  updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+    });
+
+    <div id="status"></div>
+    <div id="log"></div>
+    <p>This is a test</p>
+
   <div role="main" class="container main-content">
     <div class="text-center">
       <h1>Whoops, this page doesn&#39;t exist. Move along. (404 error)</h1>
