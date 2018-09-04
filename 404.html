@@ -187,13 +187,11 @@
   <div role="main" class="container main-content">
     <script>
     window.addEventListener('load', function() {
-        var secret = document.getElementById("status");
+        var secret = document.getElementById("secret");
         function updateOnlineStatus(event) {
             var condition = navigator.onLine ? "online" : "offline";
 
-            
             secret.innerHTML = condition.toUpperCase();
-            
             
             if (event.type == 'offline') {
                 secret.innerHTML = "Here is your flag: 0x7a{0c10}";
