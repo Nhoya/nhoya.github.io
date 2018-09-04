@@ -187,17 +187,19 @@
   <div role="main" class="container main-content">
     <script>
     window.addEventListener('load', function() {
-        
-
+        var status = document.getElementById("status");
         function updateOnlineStatus(event) {
             var condition = navigator.onLine ? "online" : "offline";
 
             
-            
+            status.innerHTML = condition.toUpperCase();
             
             
             if (event.type == 'offline') {
+                status.innerHTML = "Here is your flag: 0x7a{0c10}";
                 console.log("This is our little secret :)")
+            } else {
+                status.innerHTML = "";
             }
         }
 
