@@ -188,15 +188,17 @@
     <script>
     window.addEventListener('load', function() {
         var status = document.getElementById("status");
-        var log = document.getElementById("log");
 
         function updateOnlineStatus(event) {
             var condition = navigator.onLine ? "online" : "offline";
 
             status.className = condition;
             status.innerHTML = condition.toUpperCase();
-
+            
             console.log("beforeend", "Event: " + event.type + "; Status: " + condition);
+            if (event.type == 'offline') {
+                console.log("status offline")
+            }
         }
 
         window.addEventListener('online',  updateOnlineStatus);
@@ -204,7 +206,6 @@
     });</script>
 
     <div id="status"></div>
-    <div id="log"></div>
     <p>This is a test</p>
     
     <div class="text-center">
