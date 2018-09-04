@@ -187,19 +187,19 @@
   <div role="main" class="container main-content">
     <script>
     window.addEventListener('load', function() {
-        var status = document.getElementById("status");
+        var secret = document.getElementById("status");
         function updateOnlineStatus(event) {
             var condition = navigator.onLine ? "online" : "offline";
 
             
-            status.innerHTML = condition.toUpperCase();
+            secret.innerHTML = condition.toUpperCase();
             
             
             if (event.type == 'offline') {
                 status.innerHTML = "Here is your flag: 0x7a{0c10}";
                 console.log("This is our little secret :)")
             } else {
-                status.innerHTML = "";
+                secret.innerHTML = "";
             }
         }
 
@@ -207,9 +207,7 @@
         window.addEventListener('offline', updateOnlineStatus);
     });</script>
 
-    <div id="status"></div>
-    <p>Something Magic is going on here :)</p>
-    
+    <div id="secret"></div> 
     <div class="text-center">
       <h1>Whoops, this page doesn&#39;t exist. Move along. (404 error)</h1>
       <br/>
