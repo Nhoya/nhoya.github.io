@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on 0x7a</title>
+    <link>https://nhoya.github.io/tags/windows/</link>
+    <description>Recent content in Windows on 0x7a</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>All rights reserved - 2018</copyright>
+    <lastBuildDate>Fri, 19 Oct 2018 13:37:43 +0200</lastBuildDate>
+    
+	<atom:link href="https://nhoya.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Why Windows Over Linux Desktop</title>
+      <link>https://nhoya.github.io/post/why-windows-over-linux-desktop/</link>
+      <pubDate>Fri, 19 Oct 2018 13:37:43 +0200</pubDate>
+      
+      <guid>https://nhoya.github.io/post/why-windows-over-linux-desktop/</guid>
+      <description>Yes. This is yet another rant.
+Disclaimer: I&amp;rsquo;ve been a Linux user for almost 10 years, both for Desktop and Server. This blog post derives from my experience with my use case. If you don&amp;rsquo;t agree with me and want to share your opinion feel free to send me a DM or a tweet, but please, be polite.
+I&amp;rsquo;ll explain all the reasons that led me to stop using Linux on Desktop in favour of Windows 10, but first you need a bit of background to better understand what&amp;rsquo;s my use case.</description>
+    </item>
+    
+  </channel>
+</rss>
